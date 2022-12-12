@@ -93,6 +93,33 @@ namespace AddressBookProgram
                     Console.WriteLine("Person is not found in address book");
                 }
         }
+        /// <summary>
+        /// Delect Contact Uc4
+        /// </summary>
+        public void DeleteContact()
+        {
+            Console.WriteLine("Enter the name whose contact you want to delete");
+            string deleteContactName = Console.ReadLine();
+
+            DataOfPerson deletecontact = new DataOfPerson();
+
+            foreach (var contact in addresslist)
+            {
+                if (contact.FirstName.Equals(deleteContactName) || contact.LastName.Equals(deleteContactName))
+                {
+                    deletecontact = contact;
+                    addresslist.Remove(deletecontact);
+                    Console.WriteLine("contact has been deleted successfully");
+                }
+                else
+                {
+                    Console.WriteLine("Name not found in address bool list");
+                }
+            }
+
+           
+           
+        }
     }
 
 }
