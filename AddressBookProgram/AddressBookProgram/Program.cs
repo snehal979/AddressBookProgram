@@ -33,7 +33,7 @@
                         page.DisplayDictionary();
                         break;
                     case 7:
-                        page.LambdaExpression();
+                        page.ViewLambdaExpression();
                         break;
                     case 8:
                         flag = false;

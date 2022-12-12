@@ -182,22 +182,30 @@ namespace AddressBookProgram
         /// <param name="Method"></param>
         public void GroupOfSameCityLiveAndState(List<DataOfPerson> addresslist,string Method)
         {
+            Dictionary<string, List<DataOfPerson>> persondataCity = new Dictionary<string, List<DataOfPerson>>();
             if (Method.Equals("City"))
             {
                 Console.WriteLine("Enter the name of city");
                 string cityname = Console.ReadLine();
+                Console.WriteLine(" CITY :"+cityname);
                 foreach (var data in addresslist.OrderBy(e => e.City==cityname))
                 {
-                    Console.WriteLine(data.FirstName);
+                   
+                    Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
                 }
+                                    
+
+                
             }
             else if (Method.Equals("State"))
             {
                 Console.WriteLine("Enter the name of state");
                 string statename = Console.ReadLine();
+                Console.WriteLine(" STATE :"+statename);
                 foreach (var data in addresslist.OrderBy(e => e.State))
                 {
-                    Console.WriteLine(data.FirstName);
+
+                    Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
                 }
             }
             else
@@ -207,11 +215,16 @@ namespace AddressBookProgram
            
             
         }
-        public void LambdaExpression()
+        /// <summary>
+        /// Display METHOD FOR lAMBDA EXPRESSION
+        /// </summary>
+        public void ViewLambdaExpression()
         {
             Console.WriteLine("Enter the serach location City/State");
             string method = Console.ReadLine();
             GroupOfSameCityLiveAndState(addresslist, method);
+            
+
         }
 
     }
