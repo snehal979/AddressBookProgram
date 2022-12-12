@@ -183,30 +183,41 @@ namespace AddressBookProgram
         public void GroupOfSameCityLiveAndState(List<DataOfPerson> addresslist,string Method)
         {
             Dictionary<string, List<DataOfPerson>> persondataCity = new Dictionary<string, List<DataOfPerson>>();
-            if (Method.Equals("City"))
+            if (Method.Equals("city"))
             {
+                //// To sort the details list
                 Console.WriteLine("Enter the name of city");
                 string cityname = Console.ReadLine();
                 Console.WriteLine(" CITY :"+cityname);
-                foreach (var data in addresslist.OrderBy(e => e.City==cityname))
+                var AddressBookCityData = addresslist.OrderBy(e => e.City==cityname);
+                
+                foreach (var data in AddressBookCityData)
                 {
-                   
-                    Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
-                }
-                                    
 
+                    Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
+
+                }
+                //// Count of person
+                Console.WriteLine(" Total perosn present in City {0} is {1} " ,cityname ,AddressBookCityData.Count() ); 
                 
             }
-            else if (Method.Equals("State"))
+            else if (Method.Equals("state"))
             {
+                //// To sort the details list
+              
                 Console.WriteLine("Enter the name of state");
                 string statename = Console.ReadLine();
                 Console.WriteLine(" STATE :"+statename);
-                foreach (var data in addresslist.OrderBy(e => e.State))
+                var addressBookStateData = addresslist.OrderBy(e => e.State);
+                foreach (var data in addressBookStateData)
                 {
 
                     Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
+
                 }
+                //// Count of person
+                Console.WriteLine(" Total perosn present in State {0} is {1} ", statename, addressBookStateData.Count());
+
             }
             else
             {
@@ -221,7 +232,7 @@ namespace AddressBookProgram
         public void ViewLambdaExpression()
         {
             Console.WriteLine("Enter the serach location City/State");
-            string method = Console.ReadLine();
+            string method = Console.ReadLine().ToLower(); ;
             GroupOfSameCityLiveAndState(addresslist, method);
             
 
