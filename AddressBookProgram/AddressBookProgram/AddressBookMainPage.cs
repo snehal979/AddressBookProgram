@@ -140,6 +140,24 @@ namespace AddressBookProgram
             addressBook.Add(name, addresslist);
             addresslist = new List<DataOfPerson>();
         }
+        /// <summary>
+        /// Uc 6
+        /// </summary>
+        // display dictionary which is base on key value
+        public void DisplayDictionary()
+        {
+            foreach (var data in addressBook)
+            {
+                Console.WriteLine(data.Key);//printing dictionary keys
+                foreach (var contact in data.Value)// checking values inside keys
+                {
+                    Console.WriteLine("Contact Details:" + "\n" + "FirstName: " + contact.FirstName + "\n" + "LastName: " + contact.LastName + "\n" + "Address: " + contact.Address + "\n" + "City: " + contact.City + "\n" + "State: " + contact.State + "\n" + "Zip: " + contact.Zip + "\n" + "PhoneNumber: " + contact.PhoneNUmber + "\n" + "Email: " + contact.Email);
+
+                }
+
+            }
+        }
+        
     }
 
 }
