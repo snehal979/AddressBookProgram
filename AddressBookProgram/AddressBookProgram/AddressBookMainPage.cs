@@ -34,9 +34,9 @@ namespace AddressBookProgram
             contact.PhoneNUmber = Console.ReadLine();
             Console.WriteLine("Enter the Email ID");
             contact.Email = Console.ReadLine();
-
-            addresslist.Add(contact);    // add data into the list of address book
-            Display();
+           
+            CheckDuplicateName(addresslist, contact); // to check Duplicated name is present or not
+          
 
         }
         public void Display()
@@ -156,6 +156,24 @@ namespace AddressBookProgram
                 }
 
             }
+        }
+        /// <summary>
+        /// Uc 7 Duplicate Data of person (COLLECTION DEMO) and (LAMBDA)
+        /// </summary>
+        public void CheckDuplicateName(List<DataOfPerson> addresslist, DataOfPerson contact)
+        {
+            if(addresslist.Exists(e => e.FirstName == contact.FirstName && e.LastName == contact.LastName))
+            {
+                Console.WriteLine("*****************");
+                Console.WriteLine("The person name is already exits");
+            }
+            else
+            {
+                Console.WriteLine("The person name is not already exits then add to the list");
+                addresslist.Add(contact);
+                Display();
+            }
+           
         }
         
     }
