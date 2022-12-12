@@ -9,6 +9,8 @@ namespace AddressBookProgram
     public class AddressBookMainPage
     {
         List<DataOfPerson> addresslist = new List<DataOfPerson>();
+        Dictionary<string, List<DataOfPerson>> addressBook = new Dictionary<string, List<DataOfPerson>>();
+
         /// <summary>
         /// Uc2
         /// </summary>
@@ -98,27 +100,45 @@ namespace AddressBookProgram
         /// </summary>
         public void DeleteContact()
         {
-            Console.WriteLine("Enter the name whose contact you want to delete");
-            string deleteContactName = Console.ReadLine();
-
-            DataOfPerson deletecontact = new DataOfPerson();
-
-            foreach (var contact in addresslist)
+            try
             {
-                if (contact.FirstName.Equals(deleteContactName) || contact.LastName.Equals(deleteContactName))
+                Console.WriteLine("Enter the name whose contact you want to delete");
+                string deleteContactName = Console.ReadLine();
+
+                DataOfPerson deletecontact = new DataOfPerson();
+
+                foreach (var contact in addresslist)
                 {
-                    deletecontact = contact;
-                    addresslist.Remove(deletecontact);
-                    Console.WriteLine("contact has been deleted successfully");
+                    if (contact.FirstName.Equals(deleteContactName) || contact.LastName.Equals(deleteContactName))
+                    {
+                        deletecontact = contact;
+                        addresslist.Remove(deletecontact);
+                        Console.WriteLine("contact has been deleted successfully");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Name not found in address bool list");
+                    }
                 }
-                else
-                {
-                    Console.WriteLine("Name not found in address bool list");
-                }
+            } catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
+            
 
            
            
+        }
+        /// <summary>
+        /// uC5
+        /// </summary>
+        // add multiple data of person
+        public void CreateDictionary()
+        {
+            Console.WriteLine("Enter with what name you want to add in dictionary");
+            string name = Console.ReadLine();
+            addressBook.Add(name, addresslist);
+            addresslist = new List<DataOfPerson>();
         }
     }
 
