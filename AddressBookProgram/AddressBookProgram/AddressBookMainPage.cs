@@ -175,7 +175,45 @@ namespace AddressBookProgram
             }
            
         }
-        
+        /// <summary>
+        /// uC8 Search city and state present in the Address book
+        /// </summary>
+        /// <param name="addresslist"></param>
+        /// <param name="Method"></param>
+        public void GroupOfSameCityLiveAndState(List<DataOfPerson> addresslist,string Method)
+        {
+            if (Method.Equals("City"))
+            {
+                Console.WriteLine("Enter the name of city");
+                string cityname = Console.ReadLine();
+                foreach (var data in addresslist.OrderBy(e => e.City==cityname))
+                {
+                    Console.WriteLine(data.FirstName);
+                }
+            }
+            else if (Method.Equals("State"))
+            {
+                Console.WriteLine("Enter the name of state");
+                string statename = Console.ReadLine();
+                foreach (var data in addresslist.OrderBy(e => e.State))
+                {
+                    Console.WriteLine(data.FirstName);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid method");
+            }
+           
+            
+        }
+        public void LambdaExpression()
+        {
+            Console.WriteLine("Enter the serach location City/State");
+            string method = Console.ReadLine();
+            GroupOfSameCityLiveAndState(addresslist, method);
+        }
+
     }
 
 }

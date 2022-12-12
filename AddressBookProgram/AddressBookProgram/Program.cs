@@ -11,7 +11,7 @@
             while (flag)
             {
                 Console.WriteLine("****************************************************");
-                Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact \n4.Display contacts \n5.Create Dictionary\n6.Display Dictionary\n 7.Exit");
+                Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact \n4.Display contacts \n5.Create Dictionary\n6.Display Dictionary\n7.SearchByCityOrStateVSdata\n 8.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -33,6 +33,9 @@
                         page.DisplayDictionary();
                         break;
                     case 7:
+                        page.LambdaExpression();
+                        break;
+                    case 8:
                         flag = false;
                         break;
                 }
