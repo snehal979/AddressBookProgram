@@ -11,7 +11,7 @@
             while (flag)
             {
                 Console.WriteLine("****************************************************");
-                Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact \n4.Display contacts \n5.Create Dictionary\n6.Display Dictionary\n7.SearchByCityOrStateVSdata\n 8.Exit");
+                Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact \n4.Display contacts \n5.Create Dictionary\n6.Display Dictionary\n7.SearchByCityOrStateVSdata\n8.Sort The Address book list\n 9.Exit");
                 int option = Convert.ToInt32(Console.ReadLine());
                 switch (option)
                 {
@@ -36,6 +36,9 @@
                         page.ViewLambdaExpression();
                         break;
                     case 8:
+                        page.SortAddressBookData();
+                        break;
+                    case 9:
                         flag = false;
                         break;
                 }

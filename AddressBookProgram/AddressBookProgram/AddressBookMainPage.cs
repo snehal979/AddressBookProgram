@@ -176,7 +176,7 @@ namespace AddressBookProgram
            
         }
         /// <summary>
-        /// uC8 Search city and state present in the Address book
+        /// UC8_Uc10 Search city and state present in the Address book
         /// </summary>
         /// <param name="addresslist"></param>
         /// <param name="Method"></param>
@@ -197,7 +197,7 @@ namespace AddressBookProgram
                     Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
 
                 }
-                //// Count of person
+                //// Count of person Uc10
                 Console.WriteLine(" Total perosn present in City {0} is {1} " ,cityname ,AddressBookCityData.Count() ); 
                 
             }
@@ -215,7 +215,7 @@ namespace AddressBookProgram
                     Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
 
                 }
-                //// Count of person
+                //// Count of person Uc10
                 Console.WriteLine(" Total perosn present in State {0} is {1} ", statename, addressBookStateData.Count());
 
             }
@@ -227,7 +227,7 @@ namespace AddressBookProgram
             
         }
         /// <summary>
-        /// Display METHOD FOR lAMBDA EXPRESSION
+        /// Uc9Display METHOD FOR lAMBDA EXPRESSION
         /// </summary>
         public void ViewLambdaExpression()
         {
@@ -237,7 +237,22 @@ namespace AddressBookProgram
             
 
         }
-
+        /// <summary>
+        /// Uc11 Sort the data of Address book by Alphabate of FirstName
+        /// </summary>
+        public void SortAddressBookData()
+        {
+            Console.WriteLine("Hint 1. List of AddressBook Sort");
+            int num = Convert.ToInt16(Console.ReadLine());
+            if(num == 1)
+            {
+                addresslist.Sort((x, y) => string.Compare(x.FirstName, y.FirstName));
+                Display();
+                return;
+            }
+                  
+            
+        }
     }
 
 }
