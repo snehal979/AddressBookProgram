@@ -186,7 +186,7 @@ namespace AddressBookProgram
             {
                 Console.WriteLine("Enter the name of city");
                 string cityname = Console.ReadLine();
-                foreach (var data in addresslist.OrderBy(e => e.City==cityname))
+                foreach (var data in addresslist.FindAll(e => e.City==cityname))
                 {
                     Console.WriteLine(data.FirstName);
                 }
@@ -195,7 +195,7 @@ namespace AddressBookProgram
             {
                 Console.WriteLine("Enter the name of state");
                 string statename = Console.ReadLine();
-                foreach (var data in addresslist.OrderBy(e => e.State))
+                foreach (var data in addresslist.FindAll(e => e.State))
                 {
                     Console.WriteLine(data.FirstName);
                 }
