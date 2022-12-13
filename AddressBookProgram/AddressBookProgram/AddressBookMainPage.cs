@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -10,7 +11,6 @@ namespace AddressBookProgram
     {
         List<DataOfPerson> addresslist = new List<DataOfPerson>();
         Dictionary<string, List<DataOfPerson>> addressBook = new Dictionary<string, List<DataOfPerson>>();
-
         /// <summary>
         /// Uc2
         /// </summary>
@@ -123,10 +123,7 @@ namespace AddressBookProgram
             } catch(Exception ex)
             {
                 Console.WriteLine(ex.Message);
-            }
-            
-
-           
+            }  
            
         }
         /// <summary>
@@ -172,8 +169,7 @@ namespace AddressBookProgram
                 Console.WriteLine("The person name is not already exits then add to the list");
                 addresslist.Add(contact);
                 Display();
-            }
-           
+            }  
         }
         /// <summary>
         /// UC8_Uc10 Search city and state present in the Address book
@@ -182,37 +178,37 @@ namespace AddressBookProgram
         /// <param name="Method"></param>
         public void GroupOfSameCityLiveAndState(List<DataOfPerson> addresslist,string Method)
         {
-           
+
             if (Method.Equals("city"))
             {
                 //// To sort the details list
                 Console.WriteLine("Enter the name of city");
                 string cityname = Console.ReadLine();
                 Console.WriteLine(" CITY :"+cityname);
-                var AddressBookCityData = addresslist.OrderBy(e => e.City==cityname);
-                
+                var AddressBookCityData = addresslist.FindAll(e => e.City == cityname);
+
                 foreach (var data in AddressBookCityData)
                 {
 
-                    Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
+                    Console.WriteLine("Name "+data.FirstName +" "+data.LastName);
 
                 }
+
                 //// Count of person Uc10 in city
-                Console.WriteLine(" Total perosn present in City {0} is {1} " ,cityname ,AddressBookCityData.Count() ); 
-                
+                Console.WriteLine(" Total perosn present in City {0} is {1} ", cityname, AddressBookCityData.Count());
             }
             else if (Method.Equals("state"))
             {
                 //// To sort the details list
-              
+
                 Console.WriteLine("Enter the name of state");
                 string statename = Console.ReadLine();
                 Console.WriteLine(" STATE :"+statename);
-                var addressBookStateData = addresslist.OrderBy(e => e.State);
+                var addressBookStateData = addresslist.FindAll(e => e.State == statename);
                 foreach (var data in addressBookStateData)
                 {
 
-                    Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
+                    Console.WriteLine("Name "+data.FirstName +" "+data.LastName);
 
                 }
                 //// Count of person Uc10 in state
@@ -249,11 +245,45 @@ namespace AddressBookProgram
                 addresslist.Sort((x, y) => string.Compare(x.FirstName, y.FirstName));
                 Display();
                 return;
-            }
-                  
+            }       
             
         }
-        
+        /// <summary>
+        /// Uc12 Search the data by City State and Zip;
+        /// </summary>
+        public void SortByCity_State_Zip()
+        {
+            Console.WriteLine("Hint 1.Sorted by city \n 2.Sorted by State \n 3.Sorted by Zip");
+            int num = Convert.ToInt16(Console.ReadLine());
+            if (num == 1)
+            {
+                addresslist.Sort((x, y) => string.Compare(x.State, y.State));
+                DisplayList();
+                return;
+            }
+            else if(num == 2)
+            {
+                addresslist.Sort((x, y) => string.Compare(x.City, y.City));
+                DisplayList();
+            } else if (num ==3)
+            {
+                addresslist.Sort((x, y) => string.Compare(x.Zip, y.Zip));
+                DisplayList();
+            }
+
+
+        }
+        //Display For State ,Zip,City list
+        public void DisplayList()
+        {
+            foreach(var data in addresslist)
+            {
+                Console.WriteLine("Name "+data.FirstName +" "+data.LastName);
+                Console.WriteLine("----------------");
+            }
+           
+        }
+
     }
 
 }
