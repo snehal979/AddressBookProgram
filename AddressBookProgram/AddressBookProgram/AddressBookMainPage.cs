@@ -182,7 +182,7 @@ namespace AddressBookProgram
         /// <param name="Method"></param>
         public void GroupOfSameCityLiveAndState(List<DataOfPerson> addresslist,string Method)
         {
-            Dictionary<string, List<DataOfPerson>> persondataCity = new Dictionary<string, List<DataOfPerson>>();
+           
             if (Method.Equals("city"))
             {
                 //// To sort the details list
@@ -197,7 +197,7 @@ namespace AddressBookProgram
                     Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
 
                 }
-                //// Count of person Uc10
+                //// Count of person Uc10 in city
                 Console.WriteLine(" Total perosn present in City {0} is {1} " ,cityname ,AddressBookCityData.Count() ); 
                 
             }
@@ -215,7 +215,7 @@ namespace AddressBookProgram
                     Console.WriteLine("Name "+data.FirstName +" "+data.LastName+"\n Address "+ data.Address + "\n" + "City: " + data.City + "\n" + "State: " + data.State + "\n" + "Zip: " + data.Zip + "\n" + "PhoneNumber: " + data.PhoneNUmber + "\n" + "Email: " + data.Email);
 
                 }
-                //// Count of person Uc10
+                //// Count of person Uc10 in state
                 Console.WriteLine(" Total perosn present in State {0} is {1} ", statename, addressBookStateData.Count());
 
             }
@@ -253,6 +253,7 @@ namespace AddressBookProgram
                   
             
         }
+        
     }
 
 }
