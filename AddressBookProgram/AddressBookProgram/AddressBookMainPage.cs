@@ -283,6 +283,15 @@ namespace AddressBookProgram
             }
            
         }
+        /// <summary>
+        /// Uc13 Call the FileReadOrWriteMethod
+        /// </summary>
+        public void TxtFileWriteAndRead()
+        {
+            string filepath = @"C:\Users\hp\Desktop\newFolder\AddressBookProgram\AddressBookProgram\AddressBookProgram\AddressBook.txt";
+            FileReadOrWrite fileReadOrWrite = new FileReadOrWrite();
+            fileReadOrWrite.WriteFile(filepath, addresslist);
+        }
 
     }
 
