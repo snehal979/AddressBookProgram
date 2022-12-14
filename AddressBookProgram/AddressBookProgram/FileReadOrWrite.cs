@@ -19,11 +19,12 @@ namespace AddressBookProgram
             {
                 foreach (var item in addresslist)
                 {
-                    writer.WriteLine(item.FirstName+" "+item.LastName);
+                    writer.WriteLine("\n"+item.FirstName+","+item.LastName+","+item.Address+","+item.City+","+item.State+","+item.Zip+","+item.PhoneNUmber+","+item.Email);
                 }
                 // data Remaining
                 writer.Close();
                 Console.WriteLine("close file");
+                Console.WriteLine("Read the Txt file Of Address book");
                 Console.WriteLine(File.ReadAllText(filepath));
 
             }

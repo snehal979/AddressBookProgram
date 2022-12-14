@@ -285,12 +285,27 @@ namespace AddressBookProgram
         }
         /// <summary>
         /// Uc13 Call the FileReadOrWriteMethod
+        /// Uc14 Csv File call Method
         /// </summary>
-        public void TxtFileWriteAndRead()
+        public void TxtFileWriteAndRead(string filepath)
         {
-            string filepath = @"C:\Users\hp\Desktop\newFolder\AddressBookProgram\AddressBookProgram\AddressBookProgram\AddressBook.txt";
-            FileReadOrWrite fileReadOrWrite = new FileReadOrWrite();
-            fileReadOrWrite.WriteFile(filepath, addresslist);
+            Console.WriteLine("hint 1.Txt file \n 2.Csv File \n 3.Json file");
+            int choices = Convert.ToInt32(Console.ReadLine());
+            switch (choices)
+            {
+                case 1:
+                    FileReadOrWrite fileReadOrWrite = new FileReadOrWrite();
+                    fileReadOrWrite.WriteFile(filepath, addresslist);
+                    break;
+                case 2:
+                    CsvFileAddressBook csv = new CsvFileAddressBook();
+                    csv.CsvHandingFile(filepath, addresslist);
+                    break;
+            }
+            
+           
+
+           
         }
 
     }
