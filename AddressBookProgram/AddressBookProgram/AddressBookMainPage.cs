@@ -286,6 +286,7 @@ namespace AddressBookProgram
         /// <summary>
         /// Uc13 Call the FileReadOrWriteMethod
         /// Uc14 Csv File call Method
+        /// Uc15 Json file Not working
         /// </summary>
         public void TxtFileWriteAndRead(string filepath)
         {
@@ -300,6 +301,12 @@ namespace AddressBookProgram
                 case 2:
                     CsvFileAddressBook csv = new CsvFileAddressBook();
                     csv.CsvHandingFile(filepath, addresslist);
+                    break;
+                case 3:
+                    JsonFileAddressBook jsonFileAddressBook = new JsonFileAddressBook();
+                    string jsonfile = @"C:\Users\hp\Desktop\newFolder\AddressBookProgram\AddressBookProgram\AddressBookProgram\Files\jsonAddressBook.json";
+                    jsonFileAddressBook.JsonSerialize(jsonfile, addresslist);
+                   
                     break;
             }
             
