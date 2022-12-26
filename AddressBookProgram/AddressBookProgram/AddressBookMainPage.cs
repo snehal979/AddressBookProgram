@@ -396,6 +396,28 @@ namespace AddressBookProgram
                 this.sqlconnection.Close();
             }
         }
+        /// <summary>
+        /// Uc19 Retrive data by city or state using ADO.net
+        /// </summary>
+        /// <param name="addressServer"></param>
+        public void RetriveBycityOrstate(List<DataOfPerson> addressServer)
+        {
+            Console.WriteLine("Select data which you want 1.city 2.state");
+            int num = Convert.ToInt32(Console.ReadLine());
+            switch (num)
+            {
+                case 1:
+                    string queryCity = @"SELECT * FROM AddressBookList WHERE City='Nagpur'";
+                    RetriveAddressBookServer(addressServer, queryCity);
+                    break;
+                case 2:
+                    string queryState = @"SELECT * FROM AddressBookList WHERE State='UP'";
+                    RetriveAddressBookServer(addressServer, queryState);
+                    break;
+            }
+           
+        }
+       
 
 
     }
