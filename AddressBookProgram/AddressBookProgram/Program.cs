@@ -8,6 +8,7 @@
             Console.WriteLine("Welcom to Address Book Project");
            
             AddressBookMainPage page = new AddressBookMainPage();
+            List<DataOfPerson> addressServer = new List<DataOfPerson>();
             try
             {
                 bool flag = true;
@@ -48,6 +49,9 @@
                             page.TxtFileWriteAndRead(filepath);
                             break;
                         case 11:
+                            page.RetriveAddressBookServer(addressServer);
+                            break;
+                        case 12:
                             flag = false;
                             break;
                     }

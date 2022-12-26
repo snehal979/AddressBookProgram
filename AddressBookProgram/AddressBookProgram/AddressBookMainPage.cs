@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -11,6 +12,10 @@ namespace AddressBookProgram
     {
         List<DataOfPerson> addresslist = new List<DataOfPerson>();
         Dictionary<string, List<DataOfPerson>> addressBook = new Dictionary<string, List<DataOfPerson>>();
+
+        // connection with the sql databse-AddressServerADO
+        public static string connectionString = "Data Source =(localdb)\\MSSQLLocalDB;Initial Catalog =AddressBookServerADO";
+        SqlConnection sqlconnection = new SqlConnection(connectionString);
         /// <summary>
         /// Uc2
         /// </summary>
@@ -56,6 +61,7 @@ namespace AddressBookProgram
             string editname = Console.ReadLine();
 
             foreach (var contact in addresslist)
+            {
                 if (contact.FirstName.Equals(editname) || contact.LastName.Equals(editname))
                 {
                     Console.WriteLine("What you want to Edit" + "\n" + "Select 1.Address 2.City 3.State 4.Zip 5.PhoneNumber 6.Email ");
@@ -65,7 +71,7 @@ namespace AddressBookProgram
                         case 1:
                             Console.WriteLine("Enter the new address");
                             contact.Address = Console.ReadLine();
-                           
+
                             break;
                         case 2:
                             Console.WriteLine("Enter the new city");
@@ -94,6 +100,7 @@ namespace AddressBookProgram
                 {
                     Console.WriteLine("Person is not found in address book");
                 }
+            }
         }
         /// <summary>
         /// Delect Contact Uc4
@@ -213,14 +220,11 @@ namespace AddressBookProgram
                 }
                 //// Count of person Uc10 in state
                 Console.WriteLine(" Total perosn present in State {0} is {1} ", statename, addressBookStateData.Count());
-
             }
             else
             {
                 Console.WriteLine("Invalid method");
             }
-           
-            
         }
         /// <summary>
         /// Uc9Display METHOD FOR lAMBDA EXPRESSION
@@ -230,8 +234,6 @@ namespace AddressBookProgram
             Console.WriteLine("Enter the serach location City/State");
             string method = Console.ReadLine().ToLower(); ;
             GroupOfSameCityLiveAndState(addresslist, method);
-            
-
         }
         /// <summary>
         /// Uc11 Sort the data of Address book by Alphabate of FirstName
@@ -270,8 +272,6 @@ namespace AddressBookProgram
                 addresslist.Sort((x, y) => string.Compare(x.Zip, y.Zip));
                 DisplayList();
             }
-
-
         }
         //Display For State ,Zip,City list
         public void DisplayList()
@@ -309,10 +309,53 @@ namespace AddressBookProgram
                    
                     break;
             }
+        
+        }
+        /// <summary>
+        /// Uc 16 AddressBook Service database using ADO.NET
+        /// </summary>
+        public void RetriveAddressBookServer(List<DataOfPerson> addressServer)
+        {
+            string query = @"Select * from AddressBookList";
             
-           
+            try
+            {
+                using (this.sqlconnection)
+                {
+                    this.sqlconnection.Open();
+                    SqlCommand command = new SqlCommand(query, this.sqlconnection);
+                    SqlDataReader dr = command.ExecuteReader(); //Only use for read
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            DataOfPerson data = new DataOfPerson();
+                            data.FirstName =dr.GetString(0);
+                            data.LastName =dr.GetString(1);
+                            data.Address =dr.GetString(2);
+                            data.City =dr.GetString(3);
+                            data.State =dr.GetString(4);
+                            data.Zip =dr.GetString(5);
+                            data.PhoneNUmber =dr.GetString(6);
+                            data.Email =dr.GetString(7);
 
-           
+                            addressServer.Add(data);
+                        }
+                        foreach (var contact in addressServer)
+                        {
+                            Console.WriteLine("Contact Details:" + "\n" + "FirstName: " + contact.FirstName + "\n" + "LastName: " + contact.LastName + "\n" + "Address: " + contact.Address + "\n" + "City: " + contact.City + "\n" + "State: " + contact.State + "\n" + "Zip: " + contact.Zip + "\n" + "PhoneNumber: " + contact.PhoneNUmber + "\n" + "Email: " + contact.Email);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                this.sqlconnection.Close();
+            }
         }
 
     }
