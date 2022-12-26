@@ -16,8 +16,7 @@
                 while (flag)
                 {
                     Console.WriteLine("****************************************************");
-                    Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact \n4.Display contacts \n5.Create Dictionary\n6.Display Dictionary\n7.SearchByCityOrStateVSdata\n8.Sort The Address book list\n 9.Sorted by state zip and city\n 10.File read or write" +
-                        "11.Database Retrive 12.Update Data Database \n13.Exit");
+                    Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact 4.Exit");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -51,7 +50,8 @@
                             page.TxtFileWriteAndRead(filepath);
                             break;
                         case 11:
-                            page.RetriveAddressBookServer(addressServer);
+                            string query = @"Select * from AddressBookList";
+                            page.RetriveAddressBookServer(addressServer,query);
                             break;
                         case 12:
                             DataOfPerson dataADO = new DataOfPerson();
@@ -63,6 +63,10 @@
                             page.UpdateAddressService(dataADO);
                             break;
                         case 13:
+                            string queryForDiff = @"SELECT * FROM AddressBookList WHERE WorkingPeriod BETWEEN CAST('2017-01-01'AS DATE) AND GETDATE();";
+                            page.RetriveAddressBookServer(addressServer,queryForDiff);
+                            break;
+                        case 14:
                             flag = false;
                             break;
                     }
@@ -74,10 +78,8 @@
                 Console.WriteLine(ex.Message);
             }
 
-
-
-
         }
+
         
     }
 }

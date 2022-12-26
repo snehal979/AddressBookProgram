@@ -17,3 +17,11 @@ INSERT INTO AddressBookList VALUES('Snehal','Bansod','Plotno12','Sindewahi','Mah
 
 --Display
 SELECT * FROM AddressBookList
+--added in a particular period - Use ADO.NET
+ALTER TABLE AddressBookList ADD WorkingPeriod Date
+UPDATE AddressBookList SET WorkingPeriod = '2018-12-4' WHERE Firstname ='Snehal';
+UPDATE AddressBookList SET WorkingPeriod ='2018-2-1' WHERE Firstname ='Mayur';
+
+UPDATE AddressBookList SET WorkingPeriod = '2016-12-4' WHERE Firstname ='Lata';
+UPDATE AddressBookList SET WorkingPeriod = '2013-11-4' WHERE Firstname ='Raju';
+

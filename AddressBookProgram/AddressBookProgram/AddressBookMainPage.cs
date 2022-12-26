@@ -313,11 +313,10 @@ namespace AddressBookProgram
         }
         /// <summary>
         /// Uc 16 AddressBook Service database using ADO.NET
+        /// Uc 18 Add in Perticular period
         /// </summary>
-        public void RetriveAddressBookServer(List<DataOfPerson> addressServer)
+        public void RetriveAddressBookServer(List<DataOfPerson> addressServer, string query)
         {
-            string query = @"Select * from AddressBookList";
-            
             try
             {
                 using (this.sqlconnection)
@@ -397,6 +396,7 @@ namespace AddressBookProgram
                 this.sqlconnection.Close();
             }
         }
+
 
     }
 
