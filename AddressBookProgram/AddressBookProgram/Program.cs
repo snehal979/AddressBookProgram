@@ -12,6 +12,7 @@ namespace AddressBookProgram
             //For ADO .net data provider
             AddressBookMainPage page = new AddressBookMainPage();
             List<DataOfPerson> addressServer = new List<DataOfPerson>();
+            DataOfPerson dataADO = new DataOfPerson();
             try
             {
                 bool flag = true;
@@ -19,7 +20,7 @@ namespace AddressBookProgram
                 {
                     Console.WriteLine("****************************************************");
                     Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact \n4.Display contacts \n5.Create Dictionary\n6.Display Dictionary\n7.SearchByCityOrStateVSdata\n8.Sort The Address book list\n 9.Sorted by state zip and city\n 10.File read or write" +
-                        "11.Database Retrive 12.Update Data Database13.Add in Perticular period \n14.Exit");
+                        "11.Database Retrive \n12.Update Data Database\n13.Add in Perticular period \n 14.retrive data by city or state \n15.add data in database\n16.Exit");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -57,8 +58,6 @@ namespace AddressBookProgram
                             page.RetriveAddressBookServer(addressServer,query);
                             break;
                         case 12:
-                            DataOfPerson dataADO = new DataOfPerson();
-
                             Console.WriteLine("Enter the firstName");
                             dataADO.FirstName = Console.ReadLine();
                             Console.WriteLine("enter the changes in email id");
@@ -73,6 +72,9 @@ namespace AddressBookProgram
                             page.RetriveBycityOrstate(addressServer);
                             break;
                         case 15:
+                            page.AddContactAddressBook(dataADO);
+                            break;
+                        case 16:
                             flag = false;
                             break;
                     }
