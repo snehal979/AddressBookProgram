@@ -7,6 +7,7 @@
             string filepath = @"C:\Users\hp\Desktop\newFolder\AddressBookProgram\AddressBookProgram\AddressBookProgram\Files\AddressBook.txt";
             Console.WriteLine("Welcom to Address Book Project");
            
+            //For ADO .net data provider
             AddressBookMainPage page = new AddressBookMainPage();
             List<DataOfPerson> addressServer = new List<DataOfPerson>();
             try
@@ -15,7 +16,8 @@
                 while (flag)
                 {
                     Console.WriteLine("****************************************************");
-                    Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact \n4.Display contacts \n5.Create Dictionary\n6.Display Dictionary\n7.SearchByCityOrStateVSdata\n8.Sort The Address book list\n 9.Sorted by state zip and city\n 10.File read or write \n11.Exit");
+                    Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact \n4.Display contacts \n5.Create Dictionary\n6.Display Dictionary\n7.SearchByCityOrStateVSdata\n8.Sort The Address book list\n 9.Sorted by state zip and city\n 10.File read or write" +
+                        "11.Database Retrive 12.Update Data Database \n13.Exit");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -52,6 +54,15 @@
                             page.RetriveAddressBookServer(addressServer);
                             break;
                         case 12:
+                            DataOfPerson dataADO = new DataOfPerson();
+
+                            Console.WriteLine("Enter the firstName");
+                            dataADO.FirstName = Console.ReadLine();
+                            Console.WriteLine("enter the changes in email id");
+                            dataADO.Email = Console.ReadLine();
+                            page.UpdateAddressService(dataADO);
+                            break;
+                        case 13:
                             flag = false;
                             break;
                     }

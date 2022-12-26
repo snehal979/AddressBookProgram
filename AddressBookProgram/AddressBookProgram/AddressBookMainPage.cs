@@ -357,6 +357,46 @@ namespace AddressBookProgram
                 this.sqlconnection.Close();
             }
         }
+        /// <summary>
+        /// UC 17 Update database by Person Name
+        /// </summary>
+        /// <param name="payRoll"></param>
+        /// <exception cref="Exception"></exception>
+        public string UpdateAddressService(DataOfPerson dataADO)
+        {
+            string Updatequery = @"UPDATE AddressBookList SET Email =@Email WHERE FirstName=@FirstName";
+            try
+            {
+                using (this.sqlconnection)
+                {
+                    SqlCommand command = new SqlCommand(Updatequery, this.sqlconnection);
+
+                    command.Parameters.AddWithValue("@FirstName", dataADO.FirstName);
+                    command.Parameters.AddWithValue("@Email", dataADO.Email);
+
+                    this.sqlconnection.Open();
+                    int a = command.ExecuteNonQuery(); // return only affected row/ return 1,0
+                    if (a>0)
+                    {
+                        Console.WriteLine("Update data in the employeePayRoleTable serivces");
+                        return "UPDATE";
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not Update data in the employeePayRoleTable serivces");
+                        return "NOTUPDATE";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                this.sqlconnection.Close();
+            }
+        }
 
     }
 
