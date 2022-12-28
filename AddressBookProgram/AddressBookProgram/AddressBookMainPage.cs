@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.WebRequestMethods;
 
 namespace AddressBookProgram
 {
@@ -40,7 +43,7 @@ namespace AddressBookProgram
             Console.WriteLine("Enter the Email ID");
             contact.Email = Console.ReadLine();
            
-            CheckDuplicateName(addresslist, contact); // to check Duplicated name is present or not
+            CheckDuplicateName(addresslist, contact); // Uc 7 to check Duplicated name is present or not
           
 
         }
@@ -417,8 +420,76 @@ namespace AddressBookProgram
             }
            
         }
-       
+        /// <summary>
+        /// Uc20 Add Contact IN Database Using ADO.NET
+        /// </summary>
+        /// <param name="payRoll"></param>
+        /// <param name="query"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public string AddContactAddressBook(DataOfPerson dataADO)
+        {
+            string query = @"INSERT INTO AddressBookList VALUES('Snehu','Ramtake','Plotno2','Chandrapur','Maha','234553','9877588788','snehu@gmail'),";
+            try
+            {
+                using (this.sqlconnection)
+                {
+                    SqlCommand command = new SqlCommand(query, this.sqlconnection);
+                    command.Parameters.AddWithValue("@FirstName", dataADO.FirstName);
+                    command.Parameters.AddWithValue("@LastName", dataADO.LastName);
+                    command.Parameters.AddWithValue("@Address", dataADO.Address);
+                    command.Parameters.AddWithValue("@City", dataADO.City);
+                    command.Parameters.AddWithValue("@State", dataADO.State);
+                    command.Parameters.AddWithValue("@Zip", dataADO.Zip);
+                    command.Parameters.AddWithValue("@PhoneNumber", dataADO.PhoneNUmber);
+                    command.Parameters.AddWithValue("@Email", dataADO.Email);
 
+
+                    this.sqlconnection.Open();
+                    int a = command.ExecuteNonQuery();
+                    if (a>0)
+                    {
+                        Console.WriteLine("Data Add in the employeePayRoleTable serivces");
+                        return "Added";
+                    }
+                    else
+                    {
+                        Console.WriteLine("Not Data Add in the employeePayRoleTable serivces");
+                        return "NotAdded";
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                this.sqlconnection.Close();
+            }
+        }
+        /// <summary>
+        /// Uc21 Retrive method for data base With THread
+        /// </summary>
+        /// <param name="addressServer"></param>
+        /// <param name="query"></param> 
+        public void Retrive_WithThread(List<DataOfPerson> addressServer, string query)
+        {
+            foreach (var address in addressServer)
+            {
+                Task thread = new Task(() =>
+                {
+                    Console.WriteLine(" Person Is being added "+address.FirstName);
+                    this.RetriveAddressBookServer(addressServer, query);
+                    Console.WriteLine("Person added "+address.FirstName);
+                });
+                thread.Start();
+            }
+            Console.WriteLine(addressServer.Count);
+
+
+        }
 
     }
 

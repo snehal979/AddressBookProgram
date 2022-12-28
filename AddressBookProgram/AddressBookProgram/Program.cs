@@ -8,7 +8,7 @@ namespace AddressBookProgram
         {
             string filepath = @"C:\Users\hp\Desktop\newFolder\AddressBookProgram\AddressBookProgram\AddressBookProgram\Files\AddressBook.txt";
             Console.WriteLine("Welcom to Address Book Project");
-           
+            List<DataOfPerson> addresslist = new List<DataOfPerson>();
             //For ADO .net data provider
             AddressBookMainPage page = new AddressBookMainPage();
             List<DataOfPerson> addressServer = new List<DataOfPerson>();
@@ -20,7 +20,7 @@ namespace AddressBookProgram
                 {
                     Console.WriteLine("****************************************************");
                     Console.WriteLine("Select 1.CreateContact \n 2.Edit Contact\n 3.Delete contact \n4.Display contacts \n5.Create Dictionary\n6.Display Dictionary\n7.SearchByCityOrStateVSdata\n8.Sort The Address book list\n 9.Sorted by state zip and city\n 10.File read or write" +
-                        "11.Database Retrive \n12.Update Data Database\n13.Add in Perticular period \n 14.retrive data by city or state \n15.add data in database\n16.Exit");
+                        "\n11.Database Retrive \n12.Update Data Database\n13.Add in Perticular period \n 14.retrive data by city or state \n15.add data in database\n16.Multi Thread \n17.Exit");
                     int option = Convert.ToInt32(Console.ReadLine());
                     switch (option)
                     {
@@ -74,7 +74,15 @@ namespace AddressBookProgram
                         case 15:
                             page.AddContactAddressBook(dataADO);
                             break;
+                        
                         case 16:
+                            DateTime starttimeThread = DateTime.Now;
+                            string query2 = @"Select * from AddressBookList";
+                            page.Retrive_WithThread(addressServer, query2);
+                            DateTime endtimeThread = DateTime.Now;
+                            Console.WriteLine("Duration with threading is "+(endtimeThread-starttimeThread));
+                            break;
+                        case 17:
                             flag = false;
                             break;
                     }
